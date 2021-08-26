@@ -1,6 +1,6 @@
 'use strict';
 
-import BaseError from '~/errors/base';
+import BaseError from '~/system/base-error';
 
 export default class UnauthorizedError extends BaseError {
 
@@ -10,10 +10,7 @@ export default class UnauthorizedError extends BaseError {
    * @returns {Object} error
    */
   constructor() {
-    super();
-    this.type = 'UnauthorizedError';
-    this.status = 401;
-    this.message = 'You are unauthorized to make that request';
+    super('UnauthorizedError', 401, 'You are unauthorized to make that request');
   }
 
 }

@@ -3,8 +3,7 @@
 /**
  * Application configuration
  */
-
-var options = {};
+const options = {};
 
 /**
  * The name of your application

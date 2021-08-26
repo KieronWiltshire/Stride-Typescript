@@ -1,6 +1,6 @@
 'use strict';
 
-import BaseError from '~/errors/base';
+import BaseError from '~/system/base-error';
 
 export default class ForbiddenError extends BaseError {
 
@@ -10,10 +10,7 @@ export default class ForbiddenError extends BaseError {
    * @returns {Object} error
    */
   constructor() {
-    super();
-    this.type = 'ForbiddenError';
-    this.status = 403;
-    this.message = 'You are forbidden to make that request';
+    super('ForbiddenError', 403, 'You are forbidden to make that request');
   }
 
 }

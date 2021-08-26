@@ -1,6 +1,6 @@
 'use strict';
 
-import BaseError from '~/errors/base';
+import BaseError from '~/system/base-error';
 
 export default class InternalServerError extends BaseError {
 
@@ -10,10 +10,7 @@ export default class InternalServerError extends BaseError {
    * @returns {Object} error
    */
   constructor() {
-    super();
-    this.type = 'InternalServerError';
-    this.status = 500;
-    this.message = 'An internal server error occured';
+    super('InternalServerError', 500, 'An internal server error occured');
   }
 
 }

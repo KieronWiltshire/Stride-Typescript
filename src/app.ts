@@ -1,8 +1,8 @@
 'use strict';
 
-import Path from 'path';
-import Express from 'express';
-import Config from './config';
+import * as Path from 'path';
+import * as Express from 'express';
+import Config from '~/config';
 
 /**
  * Directories

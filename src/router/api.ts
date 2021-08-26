@@ -1,6 +1,6 @@
 'use strict';
 
-import Express from 'express';
+import * as Express from 'express';
 
 const router = Express.Router();
 

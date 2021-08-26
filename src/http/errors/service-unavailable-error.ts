@@ -1,6 +1,6 @@
 'use strict';
 
-import BaseError from '~/errors/base';
+import BaseError from '~/system/base-error';
 
 export default class ServiceUnavailableError extends BaseError {
 
@@ -10,10 +10,7 @@ export default class ServiceUnavailableError extends BaseError {
    * @returns {Object} error
    */
   constructor() {
-    super();
-    this.type = 'ServiceUnavailableError';
-    this.status = 503;
-    this.message = 'The service is temporarily unavailable';
+    super('ServiceUnavailableError', 503, 'The service is temporarily unavailable');
   }
 
 }

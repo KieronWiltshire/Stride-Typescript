@@ -5,7 +5,7 @@ import Path from 'path';
 /**
  * Database configuration
  */
-var options = {};
+const options = {};
 
 /**
  * Database's host

@@ -3,8 +3,7 @@
 /**
  * Greenlock configuration
  */
-
-var options = {};
+const options = {};
 
 /**
  * Whether or not to enable greenlock

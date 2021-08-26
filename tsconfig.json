@@ -1,4 +1,8 @@
 {
+  "ts-node": {
+    "transpileOnly": true,
+    "require": [ "typescript-transform-paths/register" ]
+  },
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
@@ -17,13 +21,16 @@
     "noImplicitAny": false,
     "noImplicitThis": false,
     "strictNullChecks": false,
-    "baseUrl": "src",
+    "baseUrl": ".",
     "paths": {
-      "~/*": ["*"]
+      "~/*": ["src/*"]
     }
   },
   "include": [
     "src/**/*",
     "__tests__/**/*"
+  ],
+  "plugins": [
+    { "transform": "typescript-transform-paths", "afterDeclarations": true }
   ]
 }

@@ -1,6 +1,6 @@
 'use strict';
 
-import BaseError from '~/errors/base';
+import BaseError from '~/system/base-error';
 
 export default class BadRequestError extends BaseError {
 
@@ -10,10 +10,7 @@ export default class BadRequestError extends BaseError {
    * @returns {Object} error
    */
   constructor() {
-    super();
-    this.type = 'BadRequestError';
-    this.status = 400;
-    this.message = 'The server could not process the request'
+    super('BadRequestError', 400, 'The server could not process the request');
   }
 
 }

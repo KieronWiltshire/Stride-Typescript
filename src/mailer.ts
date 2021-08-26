@@ -1,7 +1,7 @@
 'use strict';
 
-import Config from './config';
-import NodeMailer from 'nodemailer';
+import Config from '~/config';
+import NodeMailer, { Transporter } from 'nodemailer';
 
 // Mail transport
 let transport = null;
@@ -11,7 +11,7 @@ let transport = null;
  *
  * @returns {NodeMailer}
  */
-export default async function() {
+export default async function(): Promise<Transporter> {
   if (!transport) {
     let host = Config.get('mail.host', 'smtp.ethereal.email');
     let port = Config.get('mail.port', 587);

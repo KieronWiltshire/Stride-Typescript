@@ -1,6 +1,6 @@
 'use strict';
 
-import BaseError from '~/errors/base';
+import BaseError from '~/system/base-error';
 
 export default class NotFoundError extends BaseError {
 
@@ -10,10 +10,7 @@ export default class NotFoundError extends BaseError {
    * @returns {Object} error
    */
   constructor() {
-    super();
-    this.type = 'NotFoundError';
-    this.status = 404;
-    this.message = 'The intended resource could not be found';
+    super('NotFoundError', 404, 'The intended resource could not be found');
   }
 
 }

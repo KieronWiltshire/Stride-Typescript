@@ -2,7 +2,7 @@
 
 import OS from 'os';
 import Path from 'path';
-import Bootit from 'bootit';
+import {start} from 'bootit';
 import Greenlock from 'greenlock';
 import Config from '~/config';
 import {Application, io} from '~/bootstrap';
@@ -52,7 +52,7 @@ Database.connect(async function(err) {
 /**
  * Start server.
  */
-export const Server = Bootit.start(Application, options);
+export const Server = start(Application, options);
 
 /**
  * Export server.

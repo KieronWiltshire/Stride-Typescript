@@ -1,9 +1,8 @@
 'use strict';
 
-import Config from './config';
+import Config from '~/config';
 import { MongoClient } from 'mongodb';
-import Errors from './errors';
-import HostRequiredCode from './errors/codes/database/host-required';
+import InternalServerError from "~/http/errors/internal-server-error";
 
 /**
  * Connection options
@@ -29,7 +28,10 @@ if (options.host) {
     connectionURL = options.host;
   }
 } else {
-  throw Errors.status(500).push(HostRequiredCode);
+  throw new InternalServerError().push({
+    code: 'no_database_host_specified',
+    message: 'You must specify a host in order to establish a database connection'
+  });
 }
 
 if (options.port) {

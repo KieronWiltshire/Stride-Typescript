@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * Sentinel confirguration
+ * Mail confirguration
  */
-let options = {};
+const options = {};
 
 /**
  * Mailer's host

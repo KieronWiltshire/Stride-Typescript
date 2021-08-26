@@ -2,20 +2,24 @@
 
 import Fs from 'fs';
 import Path from 'path';
-import Cors from 'cors';
-import Helmet from 'helmet';
-import Logger from 'morgan';
-import Errors from './errors';
-import Express from 'express';
-import APIRouter from './router/api';
-import BodyParser from 'body-parser';
-import {publicDir} from './app';
-import CookieParser from 'cookie-parser';
-import MethodOverride from 'method-override';
-import Config from './config';
-import Database from './database';
-import NotConnectedCode from './errors/codes/database/not-connected';
-import InvalidRouteCode from './errors/codes/router/invalid-route';
+import * as Cors from 'cors';
+import * as Helmet from 'helmet';
+import * as Logger from 'morgan';
+import * as Express from 'express';
+import APIRouter from '~/router/api';
+import * as BodyParser from 'body-parser';
+import {publicDir} from '~/app';
+import * as CookieParser from 'cookie-parser';
+import * as MethodOverride from 'method-override';
+import Config from '~/config';
+import Database from '~/database';
+import InternalServerError from "~/http/errors/internal-server-error";
+import NotFoundError from "~/http/errors/not-found-error";
+
+const InvalidRouteCode = {
+  code: 'invalid_route',
+  message: 'The server could not process the request.'
+};
 
 /**
  * Initialize the router.
@@ -54,12 +58,15 @@ Router.use('/public', Express.static(publicDir));
  * allowing the request to continue through it's
  * lifecycle.
  */
-Router.use(async function(request, response, next) {
+Router.use(function(_request, _response, next) {
   try {
     if (Database.isConnected()) {
       next();
     } else {
-      next(Errors.status(500).push(NotConnectedCode));
+      next(new InternalServerError().push({
+        code: 'no_database_connection_established',
+        message: 'A database connection needs to be established'
+      }));
     }
   } catch (error) {
     next(error);
@@ -76,9 +83,9 @@ Router.use('/api', APIRouter);
  */
 Router.use(function(request, response, next) {
   if (request.originalUrl.startsWith('/api')) {
-    next(Errors.status(404).push(InvalidRouteCode));
+    next((new NotFoundError()).push(InvalidRouteCode));
   } else {
-    let indexFile = Path.join(publicDir, 'index.html');
+    const indexFile = Path.join(publicDir, 'index.html');
 
     if (Fs.existsSync(indexFile)) {
       response.sendFile(indexFile);
@@ -89,8 +96,8 @@ Router.use(function(request, response, next) {
 }, Express.static(publicDir));
 
 // Apply 404 catch
-Router.use(function(request, response, next) {
-  next(Errors.status(404).push(InvalidRouteCode)); // Resource not found
+Router.use(function(_request, _response, next) {
+  next((new NotFoundError()).push(InvalidRouteCode)); // Resource not found
 });
 
 export default Router;

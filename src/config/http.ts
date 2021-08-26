@@ -5,8 +5,7 @@ import Path from 'path';
 /**
  * HTTP configuration
  */
-
-var options = {};
+const options = {};
 
 /**
  * Run the application using a HTTPS connection
