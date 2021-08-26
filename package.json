@@ -1,7 +1,7 @@
 {
-  "name": "ludum-dare",
+  "name": "stride-ts",
   "version": "0.0.0",
-  "description": "A matchmaking staking service.",
+  "description": "Boilerplate/framework for developing APIs quickly and effectively in typescript.",
   "engines": {
     "node": ">= 14.16 <15"
   },
