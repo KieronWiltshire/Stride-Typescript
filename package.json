@@ -38,7 +38,8 @@
     "build:watch": "tsc -w -p tsconfig.release.json && tscpaths -p tsconfig.release.json -s src",
     "lint": "eslint . --ext .ts,.tsx",
     "test": "jest --coverage",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "mogront": "ts-node ./node_modules/mogront/build/bin/cli.js --config=\"src/config/database.js\" --template=\"es6\""
   },
   "author": "Kieron Wiltshire <kieron.wiltshire@outlook.com>",
   "license": "UNLICENSED",
