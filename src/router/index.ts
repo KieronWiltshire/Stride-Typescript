@@ -1,7 +1,7 @@
 'use strict';
 
-import Fs from 'fs';
-import Path from 'path';
+import * as Fs from 'fs';
+import * as Path from 'path';
 import * as Cors from 'cors';
 import * as Helmet from 'helmet';
 import * as Logger from 'morgan';
@@ -58,18 +58,14 @@ Router.use('/public', Express.static(publicDir));
  * allowing the request to continue through it's
  * lifecycle.
  */
-Router.use(function(_request, _response, next) {
-  try {
-    if (Database.isConnected()) {
-      next();
-    } else {
-      next(new InternalServerError().push({
-        code: 'no_database_connection_established',
-        message: 'A database connection needs to be established'
-      }));
-    }
-  } catch (error) {
-    next(error);
+Router.use(function databaseCheck(_request, _response, next) {
+  if (Database.isConnected()) {
+    next();
+  } else {
+    throw new InternalServerError().push({
+      code: 'no_database_connection_established',
+      message: 'A database connection needs to be established'
+    });
   }
 });
 
@@ -81,7 +77,7 @@ Router.use('/api', APIRouter);
  * or the error isn't handled, then we fallback to the public directory thus
  * leaving the client to deal with it.
  */
-Router.use(function(request, response, next) {
+Router.use(function serveFrontend(request, response, next) {
   if (request.originalUrl.startsWith('/api')) {
     next((new NotFoundError()).push(InvalidRouteCode));
   } else {
@@ -96,8 +92,8 @@ Router.use(function(request, response, next) {
 }, Express.static(publicDir));
 
 // Apply 404 catch
-Router.use(function(_request, _response, next) {
-  next((new NotFoundError()).push(InvalidRouteCode)); // Resource not found
+Router.use(function notFoundCatch(_request, _response, next) {
+  next(new NotFoundError().push(InvalidRouteCode)); // Resource not found
 });
 
 export default Router;

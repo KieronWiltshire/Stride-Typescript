@@ -13,7 +13,7 @@ Application.use('/', Router);
 /**
  * Apply an application error response handler
  */
-Application.use(function handler(error, _request, response) {
+Application.use(function errorHandler(error, _request, response, _next) {
   const status = error.status;
 
   if (!(error instanceof BaseError)) {
@@ -27,7 +27,7 @@ Application.use(function handler(error, _request, response) {
 
   delete error.status;
 
-  return response.sendStatus(status || 500).json({ error });
+  return response.status(status || 500).json({ error });
 });
 
 /**
