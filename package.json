@@ -22,17 +22,20 @@
     "rimraf": "~3.0.2",
     "ts-jest": "~27.0.3",
     "ts-node": "^10.2.1",
+    "tsconfig-paths": "^3.11.0",
+    "tscpaths": "^0.0.9",
     "tslib": "^2.3.1",
     "tsutils": "~3.21.0",
-    "typescript": "~4.3.5"
+    "typescript": "~4.3.5",
+    "typescript-transform-paths": "^3.3.1"
   },
   "scripts": {
-    "start": "node build/src/server.js",
+    "start": "node build/server.js",
     "start:dev": "nodemon -r tsconfig-paths/register src/server.ts",
     "clean": "rimraf coverage build tmp",
     "prebuild": "npm run lint",
-    "build": "tsc -p tsconfig.release.json",
-    "build:watch": "tsc -w -p tsconfig.release.json",
+    "build": "tsc -p tsconfig.release.json && tscpaths -p tsconfig.release.json -s src",
+    "build:watch": "tsc -w -p tsconfig.release.json && tscpaths -p tsconfig.release.json -s src",
     "lint": "eslint . --ext .ts,.tsx",
     "test": "jest --coverage",
     "test:watch": "jest --watch"
