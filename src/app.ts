@@ -1,5 +1,3 @@
-'use strict';
-
 import * as Path from 'path';
 import * as Express from 'express';
 import Config from '~/config';
