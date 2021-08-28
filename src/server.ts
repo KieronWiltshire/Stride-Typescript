@@ -1,5 +1,3 @@
-'use strict';
-
 import OS from 'os';
 import Path from 'path';
 import {start} from 'bootit';
