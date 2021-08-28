@@ -1,5 +1,3 @@
-'use strict';
-
 import Config from '~/config';
 import NodeMailer, { Transporter } from 'nodemailer';
 
