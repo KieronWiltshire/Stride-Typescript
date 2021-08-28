@@ -1,5 +1,3 @@
-'use strict';
-
 import Config from '~/config';
 import { MongoClient } from 'mongodb';
 import InternalServerError from "~/http/errors/internal-server-error";
