@@ -1,5 +1,3 @@
-'use strict';
-
 import BaseError from '~/system/base-error';
 
 export default class UnauthorizedError extends BaseError {
