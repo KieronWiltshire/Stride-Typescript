@@ -1,6 +1,3 @@
-
-'use strict';
-
 import * as Path from 'path';
 import * as DotEnv from 'dotenv';
 import * as DotEnvParseVariables from 'dotenv-parse-variables';
