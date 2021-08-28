@@ -1,5 +1,3 @@
-'use strict';
-
 import Env from '~/env';
 import * as Respondent from 'respondent';
 
