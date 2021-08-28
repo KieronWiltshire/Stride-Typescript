@@ -1,5 +1,3 @@
-'use strict';
-
 import * as Express from 'express';
 
 const router = Express.Router();
