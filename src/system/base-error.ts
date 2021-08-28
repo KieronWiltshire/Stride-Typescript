@@ -1,5 +1,3 @@
-'use strict';
-
 export default abstract class BaseError extends Error {
 
   type: string;
