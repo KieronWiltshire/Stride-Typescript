@@ -38,7 +38,7 @@ Application.set('trust proxy', Config.get('app.behindProxy', false));
 /**
  * Configure the application port
  */
-Application.set('port', function(val) {
+Application.set('port', function(val: string) {
   const port = parseInt(val, 10);
   if (isNaN(port)) {
     return val;
