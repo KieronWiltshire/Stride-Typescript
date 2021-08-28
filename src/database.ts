@@ -12,7 +12,7 @@ export const options = {
   port: Config.get('database.port', '3306'),
   user: Config.get('database.username', 'root'),
   password: Config.get('database.password', ''),
-  db: Config.get('database.database', 'sntl'),
+  db: Config.get('database.database', 'testapp'),
 };
 
 let connectionURL = null;
