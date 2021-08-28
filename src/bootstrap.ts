@@ -1,5 +1,3 @@
-'use strict';
-
 import Router from '~/router';
 import Application from '~/app';
 import BaseError from "~/system/base-error";
