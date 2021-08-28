@@ -20,9 +20,9 @@ const debug = createDebugger(Config.get('app.name') + ':' + 'server');
 const options = {
   io,
   redirectToHttps: true,
-  greenlock: undefined,
-  key: undefined,
-  certificate: undefined
+  greenlock: null,
+  key: null,
+  certificate: null
 };
 
 if (Config.get('http.secure', false)) {
